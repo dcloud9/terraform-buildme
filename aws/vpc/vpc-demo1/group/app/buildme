@@ -1,0 +1,8 @@
+#!/bin/bash
+GIT_ROOT="$(git rev-parse --show-toplevel)"
+source $GIT_ROOT/aws/common/scripts/tf_env_config.sh
+source $GIT_ROOT/aws/common/scripts/tf_env_vars.sh
+source $GIT_ROOT/aws/common/scripts/tf_remote_config.sh
+
+# Skip the 1st param as it's used for region, process the rest
+exec terraform "${@:3}"

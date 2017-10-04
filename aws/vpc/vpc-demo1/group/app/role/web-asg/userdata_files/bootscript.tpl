@@ -8,8 +8,9 @@ echo "hostname: ${hostname}" > /etc/cloud/cloud.cfg.d/99_hostname.cfg
 echo "fqdn: ${hostname}.${domainname}" >> /etc/cloud/cloud.cfg.d/99_hostname.cfg
 
 # Enable services for any CentOS version, including AMZN AMI
-[ $(rpm -q --queryformat '%{VERSION}' centos-release) == '7' ] && echo systemctl enable ntpd || chkconfig ntpd on
-[ $(rpm -q --queryformat '%{VERSION}' centos-release) == '7' ] && echo systemctl enable nginx || chkconfig nginx on
+[ $(rpm -q --queryformat '%{VERSION}' centos-release) == '7' ] && systemctl enable ntpd || chkconfig ntpd on
+[ $(rpm -q --queryformat '%{VERSION}' centos-release) == '7' ] && systemctl enable nginx || chkconfig nginx on
 
 # Reboot to ensure change persistence
 reboot
+
